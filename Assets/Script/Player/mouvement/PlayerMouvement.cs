@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMouvement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody2D;
-    
+
     [SerializeField] private float jumpHeight;
     [SerializeField] private float moveSpeed = 10f;
     
@@ -17,7 +17,7 @@ public class PlayerMouvement : MonoBehaviour
     
     private Vector3 _moveVel;
     
-    private bool IsGrounded;
+    [SerializeField] private bool IsGrounded;
     
     private void Update()
     {
@@ -58,10 +58,14 @@ public class PlayerMouvement : MonoBehaviour
     }
     
     private void OnCollisionEnter2D(Collision2D col) {
-        IsGrounded = true;
+        if (col.gameObject.tag == "Ground") {
+            IsGrounded = true;  
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other) {
-        IsGrounded = false;
+        if (other.gameObject.tag == "Ground") {
+            IsGrounded = false;
+        }
     }
 }

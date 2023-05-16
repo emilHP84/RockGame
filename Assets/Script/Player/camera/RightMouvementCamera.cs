@@ -16,8 +16,7 @@ public class RightMouvementCamera : MonoBehaviour
     private void FixedUpdate() {
         if (_isOnContact == true) {
             cam.transform.position += new Vector3(1, 0, 0) * Speed * Time.deltaTime;
-            
-            if (cam.transform.position.x - player.transform.position.x > 0.001f) {
+            if (cam.transform.position.x - player.transform.position.x > 0.001f) { 
                 _isOnContact = false;
             }
         }
